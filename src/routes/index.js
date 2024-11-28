@@ -1,17 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-router.use("/users",require("./users.route"));
-
-// const { logError } = require("../logger/logger");
-
-// // error handling
-
-// router.use((err, req, res, next) => {
-//   logError(err);
-//   return res.status(400).json({
-//     error: err.message,
-//   });
-// });
+router.use("/users", require("./users.route"));
+router.use("/posts", require("./posts.route"));
+router.use("/comments", require("./comments.route"));
 
 module.exports = router;

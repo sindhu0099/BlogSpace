@@ -6,13 +6,24 @@ const {
   createUserSchema,
   indexSchema,
 } = require("../middlewares/Vadilators/users.validator");
+const { authenticateToken } = require("../middlewares/authentication");
 
 router.post("/", createUserSchema(), validate, usersController.createUser);
 
-router.put("/:id",validate, usersController.updateUser);
+router.put("/:id", authenticateToken, validate, usersController.updateUser);
 
-router.get("/:id",usersController.findOneUser);
+router.delete("/:id", usersController.deleteUser);
 
-router.get("/",indexSchema(),validate,usersController.findAllUser);
+router.get("/:id", authenticateToken, usersController.findOneUser);
+
+router.get(
+  "/",
+  authenticateToken,
+  indexSchema(),
+  validate,
+  usersController.findAllUser
+);
+
+router.post("/login", usersController.userLogin);
 
 module.exports = router;

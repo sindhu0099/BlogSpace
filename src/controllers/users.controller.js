@@ -2,7 +2,7 @@ const userService = require("../services/users.service");
 
 const createUser = async (req, res, next) => {
   try {
-    const data = { ...req.body };
+    const data = req.body;
     const result = await userService.createUser(data);
     if (result.message && result.stack) {
       throw result;
@@ -10,7 +10,6 @@ const createUser = async (req, res, next) => {
       return res.status(201).send({
         code: 1001,
         message: "User has been successfully created",
-        // ...result,
       });
     }
   } catch (error) {
@@ -98,9 +97,64 @@ const findAllUser = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+      const data = { ...req.params };
+      const results = await userService.deleteUser(data);
+      if (results.message && results.stack) {
+          throw results;
+      } else if (results[0].affectedRows == 0) {
+          return res.status(404).send({
+              code: 2001,
+              message: "Record not found"
+          });
+      } else {
+          return res.status(200).send({
+              code: 1001,
+              message: "User has been successfully deleted"
+          });
+      }
+  } catch (err) {
+      next(err);
+  }
+};
+
+const userLogin = async (req, res, next) => {
+  try {
+      const data = { ...req.body };
+      const results = await userService.createLogin(data);
+      if (results.message && results.stack) {
+          throw results;
+      } else if (results.length == 0 || !results) {
+          return res.status(404).send({
+              code: 2002,
+              message: "We cannot find an account with this email or phone"
+          });
+      } else if (results.code == 401) {
+          return res.status(401).send({
+              ...results
+          });
+      } else if (results.code == 2002) {
+          return res.status(404).send({
+              ...results
+          });
+      } else {
+          return res.status(201).send({
+              code: 1001,
+              message: "Successful login",
+              results
+          });
+      }
+  } catch (error) {
+      next(error);
+  }
+};
+
 module.exports = {
   createUser,
   updateUser,
   findOneUser,
   findAllUser,
+  deleteUser,
+  userLogin
 };
