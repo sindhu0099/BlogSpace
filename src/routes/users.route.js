@@ -12,7 +12,7 @@ router.post("/", createUserSchema(), validate, usersController.createUser);
 
 router.put("/:id", authenticateToken, validate, usersController.updateUser);
 
-router.delete("/:id", usersController.deleteUser);
+router.delete("/:id",authenticateToken, usersController.deleteUser);
 
 router.get("/:id", authenticateToken, usersController.findOneUser);
 

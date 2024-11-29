@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "7aedcba1-0c9e-41f8-9738-602a6fa4a4a5",
+		"name": "Blog Space",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40068540"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users?page=1&per-page=10&query=sindhu",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per-page",
+									"value": "10"
+								},
+								{
+									"key": "query",
+									"value": "sindhu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindOne",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdGluZyBxd2VkcyIsImlhdCI6MTczMjgwOTc0NCwiZXhwIjoxNzMyODQ1NzQ0fQ.ftvaHdoTYttxweW46kWScbjDcfhDZmn7dEN1D-k43Z4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"first_name\": \"sersdf\",\r\n    \"last_name\": \"dfedcc\",\r\n    \"phone\": \"1231231231\",\r\n    \"email\": \"ska332sk@gmail.com\",\r\n    \"password\": \"wdedwaw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"qasxzdf\",\r\n    \"last_name\": \"xsxax\",\r\n    \"phone\": \"0987653123\",\r\n    \"email\": \"aewreda@gmail.com\",\r\n    \"password\": \"zascvbnm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"identity\": \"ashdsjnc@gmail.com\",\r\n    \"password\": \"zxcvbnm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "user login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \r\n    \"identity\": \"ashdsjnc@gmail.com\",\r\n    \"password\": \"zxcvbnm\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-/9IIaIr0jPWSl2Ufq5bnYd0AUNk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Nov 2024 16:02:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 1001,\n    \"message\": \"Successful login\",\n    \"results\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdGluZyBxd2VkcyIsImlhdCI6MTczMjgwOTc0NCwiZXhwIjoxNzMyODQ1NzQ0fQ.ftvaHdoTYttxweW46kWScbjDcfhDZmn7dEN1D-k43Z4\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : 2,\r\n    \"title\" : \"test\",\r\n    \"content\" : \"testing is testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\" : 1,\r\n    \"title\" : \"test1\",\r\n    \"content\" : \"test is testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindOne Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAll post  by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/8/postbyuser?page=1&per-page=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"8",
+								"postbyuser"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per-page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "FindAll post  by user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/posts/8/postbyuser?page=1&per-page=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"posts",
+										"8",
+										"postbyuser"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per-page",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "X-Pagination-Total-Count",
+									"value": "2"
+								},
+								{
+									"key": "X-Pagination-Page-Count",
+									"value": "1"
+								},
+								{
+									"key": "X-Pagination-Current-Page",
+									"value": "1"
+								},
+								{
+									"key": "X-Pagination-Per-Page",
+									"value": "10"
+								},
+								{
+									"key": "X-Pagination-Start-Record",
+									"value": "1"
+								},
+								{
+									"key": "X-Pagination-End-Record",
+									"value": "2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "257"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"101-JjVib7Jq4kMJY9X0dm5hxnNWKwc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 05:01:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"user_id\": 8,\n        \"title\": \"test123\",\n        \"content\": \"testing is testing\",\n        \"created_at\": \"2024-11-29T04:19:46.000Z\",\n        \"updated_at\": null\n    },\n    {\n        \"id\": 4,\n        \"user_id\": 8,\n        \"title\": \"test123\",\n        \"content\": \"testing is testing\",\n        \"created_at\": \"2024-11-29T04:19:47.000Z\",\n        \"updated_at\": null\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_id\" : 1,\r\n    \"user_id\" : 1,\r\n    \"comments\" : \"testuiehdjncsxl\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

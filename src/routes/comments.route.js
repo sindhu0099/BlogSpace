@@ -12,13 +12,14 @@ const commentController = require("../controllers/comments.controller");
 
 router.post(
   "/",
+  authenticateToken,
   createCommentsSchema(),
   validate,
   commentController.createComment
 );
 
-router.delete("/:id", validate, commentController.deleteComment);
+router.delete("/:id", authenticateToken,validate, commentController.deleteComment);
 
-router.get("/:id/comments-By-Post",indexSchema(),validate,commentController.findAllCommentsByPost);
+router.get("/:id/comments-By-Post",authenticateToken,indexSchema(),validate,commentController.findAllCommentsByPost);
 
 module.exports = router;

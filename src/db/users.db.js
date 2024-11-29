@@ -57,7 +57,7 @@ const deleteUser = async (id) => {
 
 const checkIdentity = async (identity) => {
   try {
-    const query = `SELECT first_name, last_name, password FROM users WHERE email = ? OR phone = ?`;
+    const query = `SELECT first_name, last_name,id, password FROM users WHERE email = ? OR phone = ?`;
     const result = await db.promise().query(query, [identity, identity]);
     if (result.length > 0) {
       return result[0];

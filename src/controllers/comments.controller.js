@@ -2,6 +2,7 @@ const commentService = require("../services/comments.service");
 
 const createComment = async (req, res, next) => {
   try {
+    // console.log(req.user);
     const data = req.body;
     const result = await commentService.createComment(data);
     if (result.message && result.stack) {
