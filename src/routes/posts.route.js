@@ -17,6 +17,6 @@ router.delete("/:id", authenticateToken, postController.deletePost);
 
 router.get("/:id", authenticateToken, postController.findOnePost);
 
-router.get("/:id", indexSchema(), validate, postController.findAllPostsByUser);
+router.get("/:id/postbyuser", indexSchema(), validate, postController.findAllPostsByUser);
 
 module.exports = router;

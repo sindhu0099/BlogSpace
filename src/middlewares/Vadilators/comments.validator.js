@@ -1,17 +1,14 @@
 const { body, validationResult, query } = require("express-validator");
 
-const createPostSchema = () => {
+const createCommentsSchema = () => {
   return [
-    body("title")
+    body("post_id").notEmpty().withMessage("Post Id is required"),
+    body("user_id").notEmpty().withMessage("User Id is required"),
+    body("comments")
       .notEmpty()
-      .withMessage("title is required")
-      .isLength({ max: 30 })
-      .withMessage("Maximum 30 characters are allowed"),
-    body("content")
-      .notEmpty()
-      .withMessage("Content is required")
-      .isLength({ max: 30 })
-      .withMessage("Maximum 30 characters are allowed"),
+      .withMessage("comments is required")
+      .isLength({ max: 255 })
+      .withMessage("Maximum 255 characters are allowed"),
   ];
 };
 
@@ -40,5 +37,5 @@ const indexSchema = () => {
 module.exports = {
   validate,
   indexSchema,
-  createPostSchema,
+  createCommentsSchema,
 };

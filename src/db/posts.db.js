@@ -12,7 +12,7 @@ const createPost = async (data) => {
 
 const updatePost = async (data, id) => {
   try {
-    const query = "UPDATE posts SET ? WHERE ID =?";
+    const query = "UPDATE posts SET ? WHERE id =?";
     const result = await db.promise().query(query, [data, id]);
     return result;
   } catch (error) {
@@ -46,10 +46,7 @@ const findOnePost = async (id) => {
 const findAllPostsByUser = async (query, values) => {
   try {
     const result = await db.promise().query(query, values);
-    if (result.length > 0) {
-      return result[0];
-    }
-    return result;
+    return result[0];
   } catch (error) {
     return error;
   }

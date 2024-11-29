@@ -1,68 +1,30 @@
-const postDb = require("../db/posts.db");
+const commentDb = require("../db/comments.db");
 
-const createPost = async (data) => {
+const createComment = async (data) => {
   try {
-    const post = {
+    const comment = {
+      post_id: data.post_id,
       user_id: data.user_id,
-      title: data.title,
-      content: data.content,
+      comments: data.comments,
       created_at: new Date(),
     };
-    const result = await postDb.createPost(post);
+    const result = await commentDb.createComment(comment);
     return result;
   } catch (error) {
     return error;
   }
 };
 
-const updatePost = async (data) => {
+const deleteComment = async (data) => {
   try {
-    const post = {
-      title: data.title,
-      content: data.content,
-      updated_at: new Date(),
-    };
-    const result = await postDb.updatePost(post, data.id);
+    const result = await commentDb.deleteComment(data.id);
     return result;
   } catch (error) {
     return error;
   }
 };
 
-const deletePost = async (data) => {
-  try {
-    const result = await postDb.deletePost(data.id);
-    if (result.message && result.stack) {
-      throw result;
-    } else {
-      return result;
-    }
-  } catch (error) {
-    return error;
-  }
-};
-
-const findOnePost = async (data) => {
-  try {
-    const result = await postDb.findOnePost(data.id);
-    if (result.message && result.stack) {
-      throw result;
-    } else if (result.length == 0) {
-      return result;
-    } else {
-      const finalResult = result.map((ele) => {
-        return {
-          ...ele,
-        };
-      });
-      return finalResult[0];
-    }
-  } catch (error) {
-    return error;
-  }
-};
-
-const findAllPostsByUser = async (data) => {
+const findAllCommentsByPost = async (data) => {
   try {
     const conditions = [];
     const values = [];
@@ -86,14 +48,14 @@ const findAllPostsByUser = async (data) => {
     sqlConditions = sqlConditions ? " WHERE " + sqlConditions : "";
 
     const sql =
-      `SELECT PO.*,US.id AS user_id FROM posts PO
-LEFT JOIN users US ON US.id = PO.user_id WHERE PO.user_id=${data.user_id}` +
+      `SELECT CO.*,PO.id AS post_id FROM comments CO
+LEFT JOIN posts PO ON PO.id = CO.post_id WHERE CO.post_id =${data.post_id}` +
       sqlConditions +
       orderBy +
       limit +
       offset;
 
-    const result = await postDb.findAllPostsByUser(sql, values);
+    const result = await commentDb.findAllCommentsByPost(sql, values);
 
     if (result.message && result.stack) {
       throw result;
@@ -101,11 +63,11 @@ LEFT JOIN users US ON US.id = PO.user_id WHERE PO.user_id=${data.user_id}` +
       return result;
     } else {
       const qry =
-        `SELECT PO.*,US.id AS user_id FROM posts PO
-LEFT JOIN users US ON US.id = PO.user_id WHERE PO.user_id= ${data.user_id}  ` +
+        `SELECT CO.*,PO.id AS post_id FROM comments CO
+LEFT JOIN posts PO ON PO.id = CO.post_id WHERE CO.post_id = ${data.post_id}  ` +
         sqlConditions;
 
-      const count = await postDb.findAllPostsByUser(qry, values);
+      const count = await commentDb.findAllCommentsByPost(qry, values);
       if (count.message && count.stack) {
         throw count;
       } else {
@@ -131,9 +93,7 @@ LEFT JOIN users US ON US.id = PO.user_id WHERE PO.user_id= ${data.user_id}  ` +
 };
 
 module.exports = {
-  createPost,
-  updatePost,
-  deletePost,
-  findOnePost,
-  findAllPostsByUser,
+  createComment,
+  deleteComment,
+  findAllCommentsByPost,
 };
